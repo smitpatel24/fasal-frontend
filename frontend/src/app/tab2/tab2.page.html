@@ -1,0 +1,45 @@
+<ion-header lines="none">
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center"> Search </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-sm="8" offset-sm="2" text-center>
+        <ion-searchbar
+          showCancelButton="never"
+          debounce="500"
+          (ionChange)="searchMovie($event)"
+          placeholder="Find Your Favourite Movies!"
+        >
+        </ion-searchbar>
+        <ng-container *ngFor="let movie of state.searchList">
+          <!-- <ion-card>
+            <ion-card-header>
+              <ion-card-title>{{movie.Title}}</ion-card-title>
+              <ion-card-title>{{movie.Year}}</ion-card-title>
+              <ion-button (click)="addMovie()">Add to List</ion-button>
+            </ion-card-header>
+            <ion-img [src]="movie.Poster"></ion-img>
+          </ion-card> -->
+          <ion-item>
+            <ion-thumbnail slot="start">
+              <img [src]="movie.Poster" />
+            </ion-thumbnail>
+            <ion-label>
+              <h2>{{movie.Title}}</h2>
+              <h3>{{movie.Year}}</h3>
+            </ion-label>
+            <ion-button
+              (click)="addToFavList(movie.Title, movie.Year, movie.imdbID, movie.Poster)"
+              slot="end"
+              >Add to List</ion-button
+            >
+          </ion-item>
+        </ng-container>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
